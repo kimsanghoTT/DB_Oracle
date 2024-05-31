@@ -76,8 +76,21 @@ SELECT COUNT(DEPT_CODE) AS "직원 수" FROM EMPLOYEE WHERE DEPT_CODE ='D9';
 -- 보너스 받은 직원 수(AS 보너스 받은 직원들)
 SELECT COUNT(BONUS) "보너스 받은 직원들" FROM EMPLOYEE;
 
+-- 6. REPLACE
+-- 이메일 주소에서 '.'을 '-'로 변경
+-- 사번, 이메일(AS 수정된 이메일)
+SELECT EMP_ID, REPLACE(EMAIL, '.', '-') "수정된 이메일" FROM EMPLOYEE;
 
+-- 주민번호에서 모든 '-'을 문자열 ""로 변경
+-- 사원이름, 주민번호(AS 수정된 번호)
+SELECT EMP_NAME, REPLACE(EMP_NO, '-', '') "수정된 번호" FROM EMPLOYEE;
 
+-- 이름에서 '김'을 'KIM'으로 변경
+-- 이름(AS 수정된 이름)
+SELECT REPLACE(EMP_NAME, '김', 'KIM') "수정된 이름" FROM EMPLOYEE;
 
+-- 직무코드에서 J를 JOB으로 대체
+-- 사번, 직무코드(AS 수정된 직무코드)
+SELECT EMP_ID, REPLACE(JOB_CODE, 'J', 'JOB') "수정된 직무코드" FROM EMPLOYEE;
 
 
