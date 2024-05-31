@@ -49,8 +49,19 @@ SELECT EMP_ID || EMP_NAME FROM EMPLOYEE;
 
 SELECT EMP_NAME || '의 월급은 ' || SALARY || '원 입니다.' FROM EMPLOYEE;
 
+/*
+테이블 복사
+    테스트를 진행하거나 컬럼에 대한 설정을 변경한 후 특정 내용을 확인하길 원한다면 
+    테이블을 복제해서 사용 가능(사본 만들기)
+*/
+-- 모두 동일하게 사본 만들기
+-- CREATE TABLE 새로운테이블명 AS SELECT * FROM 복사할테이블명;
+create table employee2 as select * from employee;
 
 
+-- 복사한 테이블이 제대로 만들어졌는지 확인하기
+-- SELECT * FROM 새로운테이블명;
+select * from employee2;
 
 
 
