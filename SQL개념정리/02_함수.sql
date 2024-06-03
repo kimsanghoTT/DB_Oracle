@@ -139,8 +139,14 @@ FROM DUAL;
 SELECT * FROM national;
 SELECT NATIONAL_CODE, REPLACE(NATIONAL_NAME, '한국', '대한민국') FROM NATIONAL;
 
-
-
+-- TO_NUMBER
+/*
+ORACLE SQL에만 존재
+문자열을 숫자 데이터 형식으로 변환하는 데 사용
+추후 JAVA INT 값이 아니라 STRING 값으로 넘어오고 변환이 필요할 때 TO_NUMBER 사용할 일이 있을 수 있음
+*/
+-- 문자열을 숫자로 변환하는 코드
+SELECT TO_NUMBER('12345') FROM DUAL;
 
 
 
