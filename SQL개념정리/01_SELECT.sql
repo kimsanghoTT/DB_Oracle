@@ -273,11 +273,76 @@ SELECT EMP_NAME || ' : ' || SALARY "이름 : 급여" FROM EMPLOYEE;
 -- 이름 - 연봉 형식으로 조회
 SELECT EMP_NAME || '-' || SALARY*12 "이름 - 급여" FROM EMPLOYEE;
 
+/*
+ORDER BY절
+    SELECT 문의 조회 결과(RESULT SET)를 정렬할 때 사용하는 구문
+    -> SELECT문에서 제일 마지막에 해석됨
+    
+    사용 방법
+    SELECT 컬럼명, 컬럼명 AS "별칭", 컬럼명, ... FROM 테이블명 
+    WHERE 조건식 ORDER BY (컬럼명 or 별칭 or 컬럼순서) ASC or DESC;
+    
+    컬럼 순서의 기본값은 오름차순.
+    ASC : 오름차순
+    DESC : 내림차순
+*/
+-- EMPLOYEE의 모든 사원의 이름, 급여(오름차순) 조회
+SELECT EMP_NAME, SALARY FROM EMPLOYEE ORDER BY SALARY ASC;
 
+-- EMPLOYEE의 모든 사원의 이름, 급여(내림차순) 조회
+SELECT EMP_NAME, SALARY FROM EMPLOYEE ORDER BY SALARY DESC;
 
+-- EMPLOYEE의 부서코드가 D5, D6, D9인 사원의 사번, 이름, 부서코드(오름차순) 조회
+SELECT EMP_ID, EMP_NAME, DEPT_CODE FROM EMPLOYEE WHERE DEPT_CODE IN ('D5','D6','D9') ORDER BY DEPT_CODE;
+-- 오름차순은 생략 가능
 
+-- 컬럼 순서를 이용해서 정렬하는 방법
+-- EMPLOYEE에서 급여가 300이상, 600이하인 사원의 사번, 이름(내림차순), 급여 조회
+SELECT EMP_ID, EMP_NAME, SALARY FROM EMPLOYEE WHERE SALARY BETWEEN '3000000' AND '6000000' ORDER BY EMP_NAME DESC;
 
+-- EMP_NAME 현재 2번쨰 자리에 위치하는 순서르 이용해서 ORDER BY
+SELECT EMP_ID, EMP_NAME, SALARY FROM EMPLOYEE WHERE SALARY BETWEEN '3000000' AND '6000000' ORDER BY 2 DESC; -- 2 : EMP_NAME
+-- 사번으로 정렬하길 윈한다면 ORDER BY '1'
+-- 급여로 정렬하길 원한다면 ORDER BY '3'
 
+-- ORDER BY절에 수식 적용
+-- EMPLOYEE에서 이름, 연봉을 연봉 내림차순 조회
+SELECT EMP_NAME, SALARY*12 FROM EMPLOYEE ORDER BY SALRY*12 DESC;
+SELECT EMP_NAME, SALARY* 12 AS "연봉" FROM EMPLOYEE ORDER BY "연봉" DESC;
+--> SELECT절 해석 이후 ORDER BY절이 해석되므로, SELECT절에서 해석된 별칭을 ORDER BY에서 사용 가능
+--> 주의점 : ORDER BY에서는 별칭 사용이 가능하지만 WHERE절에서는 사용이 불가능
+/*
+WHERE은 결과를 나타내기 위해 찾는 조건문, ORDER BY는 결과를 가지고 결과 정리를 하는 표현방법
+조건이 진행도 안됐는데 별칭을 붙이는 것은 불가능하기 때문
+*/
 
+/* ORDER BY로 정렬을 진행할 경우에는 SELECT절에 작성된 컬럼명 그대로 작성할 경우가 많음 */
+
+/*
+정렬 중첩
+    먼저 작성된 정렬 기준을 깨지 않고 다음 작성된 정렬 기준 적용. 각각 다른 정렬 기준이 됨.
+    ORDER BY 정렬기준1, 정렬기준2;
+*/
+-- EMPLOYEE에서 이름, 부서코드(오름차순), 급여(내림차순) 조회
+SELECT EMP_NAME, DEPT_CODE, SALARY FROM EMPLOYEE ORDER BY DEPT_CODE, SALARY DESC;
+
+-- EMPLOYEE에서 이름(오름차순), 부서코드(오름차순), 직급코드(내림차순) 조회
+SELECT EMP_NAME, DEPT_CODE, JOB_CODE FROM EMPLOYEE ORDER BY DEPT_CODE, JOB_CODE DESC, EMP_NAME;
+
+/*
+부서코드 1번 정렬
+제일 먼저 부서코드가 오름차순으로 정렬
+D1 D2 D3 ~ D9
+
+그 다음, 동일한 부서코드 내에서 직급코드가 내림차순으로 정렬
+D1(J7, J7 ~), ~ D5(J7, J5, ~) ~
+
+동일한 부서코드와 직급코드 내에서 이름을 오름차순으로 정렬
+D1,(J6(전지연, 차태연))
+
+컬럼 위치랑 관계 없이 ORDER BY 작성 순서대로 정렬 진행
+*/
+-- 위의 ORDER BY 순으로 컬럼을 보길 원할 때
+SELECT DEPT_CODE "부서코드", JOB_CODE "직급코드", EMP_NAME "이름" FROM EMPLOYEE ORDER BY 부서코드 ASC, 직급코드 DESC, 이름 ASC;
 
 
