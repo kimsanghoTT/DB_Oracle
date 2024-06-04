@@ -11,6 +11,9 @@ SELECT LOCAl_NAME FROM LOCATION ORDER BY NATIONAL_CODE;
 SELECT EMP_ID, EMP_NAME FROM EMPLOYEE ORDER BY EMP_NAME;
 
 --HAVING 실습
+-- where : 조건에 부합하는 것들을 검색한 다음 조건에 부합하는 것처럼 보임
+-- group by having : 모든 요소들을 조회하고 group by조건에 맞는 선택 요소만 선별
+-- from 찾을 테이블 위치 선정 -> groupby 묶을 그룹 선정 -> having 조건 설정 -> select 그룹 조건에 맞는 내용 조회
 --1. EMPLOYEE 테이블에서 DEPT_CODE별 평균 급여를 구하고, 평균 급여가 3,000,000보다 큰 부서만 조회
 SELECT DEPT_CODE, FLOOR(AVG(SALARY)) FROM EMPLOYEE GROUP BY DEPT_CODE HAVING AVG(SALARY) > 3000000;
 --2. EMPLOYEE 테이블에서 JOB_CODE별 직원 수를 구하고, 직원 수가 3명 이상인 직급만 조회
@@ -26,7 +29,7 @@ SELECT DEPT_CODE, MIN(SALARY) FROM EMPLOYEE GROUP BY DEPT_CODE HAVING MIN(SALARY
 --1. EMPLOYEE 테이블에서 DEPT_CODE별 직원 수를 조회
 SELECT DEPT_CODE, COUNT(*) FROM EMPLOYEE GROUP BY DEPT_CODE;
 --2. EMPLOYEE 테이블에서 JOB_CODE별 평균 급여를 조회
-SELECT JOB_CODE, AVG(SALARY) FROM EMPLOYEE GROUP BY JOB_CODE;
+SELECT JOB_CODE, florr(AVG(SALARY)) FROM EMPLOYEE GROUP BY JOB_CODE;
 --3. EMPLOYEE 테이블에서 SAL_LEVEL별 보너스 합계를 조회
 SELECT SAL_LEVEL, SUM(BONUS) FROM EMPLOYEE GROUP BY SAL_LEVEL;
 --4. EMPLOYEE 테이블에서 DEPT_CODE별 최대 급여를 조회
