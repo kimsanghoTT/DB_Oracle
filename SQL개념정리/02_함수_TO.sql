@@ -71,7 +71,7 @@ SELECT TO_DATE ('2024-05-05') FROM DUAL;
 SELECT TO_DATE ('06-05-2024', 'DD-MM-YYYY') FROM DUAL;
 -- TO_DATE 형식으로 년/월/일로 변경. 06-05-2024 -> 24/05/06
 
-SELECT TO_DATE('05월 27일 월요일 12시 50분', 'MM"월 DD"일 DAY HH"시" MI"분"') FROM DUAL;
+SELECT TO_DATE('05월 27일 월요일 12시 50분', 'MM"월" DD"일" DAY HH"시" MI"분"') FROM DUAL;
 -- TO_DATE 형식 (년/월/일)로 변경
 
 
