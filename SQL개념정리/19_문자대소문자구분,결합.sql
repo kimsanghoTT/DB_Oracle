@@ -1,7 +1,7 @@
 /*
 LOWER / UPPER / INITCAP
 
-    - 컬럼의 문자 또는 문자여을 소문자, 대문자, 첫 글자만 대문자로 변환해서 반환
+    - 컬럼의 문자 또는 문자열을 소문자, 대문자, 첫 글자만 대문자로 변환해서 반환
 */
 -- LOWER : 모두 소문자로 변환
 SELECT LOWER('WELCOME TO MY WORLD') FROM DUAL;
@@ -22,7 +22,7 @@ SELECT INITCAP('welcome to my world') from dual;
         CONCAT(STRING, STRING)
 */
 SELECT CONCAT('가나다라', 'ABCD') FROM DUAL;
-SELECT '가나다라' || 'ABCD' FROM DUAL;
+SELECT '가나다라' || 'ABCD' || 'QWERQWER' FROM DUAL;
 
 /*
 함수 CONCAT과 연산자 || 차이점

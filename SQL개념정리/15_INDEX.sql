@@ -23,6 +23,7 @@ INDEX
         WHERE절에 INDEX가 지정된 컬럼 언급
     
 */
+
 SELECT * FROM EMPLOYEE; -- 인덱스를 사용하지 않고 단순 조회
 
 SELECT * FROM EMPLOYEE WHERE EMP_ID != 0; -- EMP_ID라는 INDEX를 사용한다는 의미
